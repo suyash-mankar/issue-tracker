@@ -1,0 +1,13 @@
+.projectDetails {
+    display: flex;
+    align-items: center;
+}
+
+.projectDetails >p{
+    margin: 30px 40px;
+}
+
+.issueBtn{
+    height: 50px;
+   
+}

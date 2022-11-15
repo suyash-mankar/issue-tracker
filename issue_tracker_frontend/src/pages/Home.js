@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../styles/home.module.css";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,27 +24,33 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.outerContainer}>
-      {typeof projects === "undefined" ? (
-        <h1>loading...</h1>
-      ) : (
-        projects.data.map((project) => {
-          return (
-            <div className={styles.card} key={project._id}>
-              <p>Project Name : {project.name}</p>
-              <p>Project Description : {project.description}</p>
-              <p>Project author : {project.author}</p>
-              <Button
-                variant="outline-dark"
-                onClick={(e) => handleOpenProject(e)}
-                value={project._id}
-              >
-                Open Project
-              </Button>
-            </div>
-          );
-        })
-      )}
+    <div>
+      <Link to="/project/create">
+        <Button className={styles.btn}> Create Project</Button>
+      </Link>
+
+      <div className={styles.projectsContainer}>
+        {typeof projects === "undefined" ? (
+          <h1>loading...</h1>
+        ) : (
+          projects.data.map((project) => {
+            return (
+              <div className={styles.card} key={project._id}>
+                <p>Project Name : {project.name}</p>
+                <p>Project Description : {project.description}</p>
+                <p>Project author : {project.author}</p>
+                <Button
+                  variant="outline-dark"
+                  onClick={(e) => handleOpenProject(e)}
+                  value={project._id}
+                >
+                  Open Project
+                </Button>
+              </div>
+            );
+          })
+        )}
+      </div>
     </div>
   );
 };

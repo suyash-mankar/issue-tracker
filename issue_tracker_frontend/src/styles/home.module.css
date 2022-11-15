@@ -1,8 +1,7 @@
-.outerContainer {
+.projectsContainer {
   display: flex;
   flex-wrap: wrap;
-  padding: 5% 5%;
-  border: 1px solid black;
+  padding: 5px 5%;
 }
 
 .card {
@@ -11,4 +10,8 @@
   border: 1px solid black;
   padding: 10px;
   margin: 20px;
+}
+
+.btn {
+  margin: 20px 100px;
 }

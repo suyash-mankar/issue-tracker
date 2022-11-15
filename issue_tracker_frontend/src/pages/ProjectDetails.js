@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from "../styles/home.module.css";
+import Button from "react-bootstrap/Button";
+import styles from "../styles/projectDetails.module.css";
+
 
 function ProjectDetails() {
   let { id } = useParams();
@@ -22,10 +24,11 @@ function ProjectDetails() {
       {typeof project === "undefined" ? (
         <h1>loading...</h1>
       ) : (
-        <div className={styles.card} key={project._id}>
+        <div className={styles.projectDetails} key={project._id}>
           <p>Project Name : {project.data.name}</p>
           <p>Project Description : {project.data.description}</p>
           <p>Project author : {project.data.author}</p>
+          <Button variant="success" className={styles.issueBtn}>Create Issue</Button>
         </div>
       )}
     </div>
