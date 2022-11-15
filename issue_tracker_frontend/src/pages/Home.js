@@ -31,7 +31,7 @@ const Home = () => {
           return (
             <div className={styles.card} key={project._id}>
               <p>Project Name : {project.name}</p>
-              <p>Project Description : {project.Description}</p>
+              <p>Project Description : {project.description}</p>
               <p>Project author : {project.author}</p>
               <Button
                 variant="outline-dark"
