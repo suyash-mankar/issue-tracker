@@ -11,8 +11,6 @@ function NavbarComp() {
         <Link to="/">
           <Navbar.Brand> Issue-Tracker </Navbar.Brand>
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
         <Link to="/project/create">
           <Button> Create Project</Button>
         </Link>

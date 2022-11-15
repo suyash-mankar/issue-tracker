@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, CreateProject } from "../pages";
+import { Home, CreateProject, ProjectDetails } from "../pages";
 import { NavbarComp } from "./";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />} />
         <Route path="/project/create" element={<CreateProject />} />} />
+        <Route path="/project/details/:id" element={<ProjectDetails />} />} />
       </Routes>
     </Router>
   );

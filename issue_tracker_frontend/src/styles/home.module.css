@@ -1,0 +1,14 @@
+.outerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5% 5%;
+  border: 1px solid black;
+}
+
+.card {
+  width: 400px;
+  height: 300px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 20px;
+}
