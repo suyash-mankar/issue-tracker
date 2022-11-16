@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import styles from "../styles/projectDetails.module.css";
-
+import { useNavigate } from "react-router-dom";
 
 function ProjectDetails() {
   let { id } = useParams();
   const [project, setProject] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProject = async () => {
@@ -19,6 +21,10 @@ function ProjectDetails() {
     getProject();
   }, [id]);
 
+  const handleCreateIssueBtn = (e) => {
+    return navigate(`/issue/create/${id}`);
+  };
+
   return (
     <div className={styles.outerContainer}>
       {typeof project === "undefined" ? (
@@ -28,7 +34,16 @@ function ProjectDetails() {
           <p>Project Name : {project.data.name}</p>
           <p>Project Description : {project.data.description}</p>
           <p>Project author : {project.data.author}</p>
-          <Button variant="success" className={styles.issueBtn}>Create Issue</Button>
+          <Button
+            variant="success"
+            className={styles.issueBtn}
+            value={project._id}
+            onClick={(e) => {
+              handleCreateIssueBtn(e);
+            }}
+          >
+            Create Issue
+          </Button>
         </div>
       )}
     </div>

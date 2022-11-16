@@ -37,8 +37,7 @@ function CreateProject() {
           <Form.Label>Project Name</Form.Label>
           <Form.Control
             name="name"
-            value={name.value}
-            onChange={name.onChange}
+            {...name}
             type="text"
             placeholder="Enter Project Name"
             required
@@ -49,8 +48,7 @@ function CreateProject() {
           <Form.Label>Description</Form.Label>
           <Form.Control
             name="description"
-            value={description.value}
-            onChange={description.onChange}
+            {...description}
             as="textarea"
             rows={3}
             placeholder="Enter Project Description"
@@ -62,8 +60,7 @@ function CreateProject() {
           <Form.Label>Author</Form.Label>
           <Form.Control
             name="author"
-            value={author.value}
-            onChange={author.onChange}
+            {...author}
             type="text"
             placeholder="Enter Author's Name"
             required
