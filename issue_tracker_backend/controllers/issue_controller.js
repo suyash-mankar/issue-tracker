@@ -22,13 +22,3 @@ module.exports.create = async function (req, res) {
     return res.sendStatus(200);
   }
 };
-
-// module.exports.getDetails = function (req, res) {
-//   Project.find({}, function (err, project) {
-//     if (err) {
-//       console.log("error in finding project details in db");
-//       return;
-//     }
-//     return res.json({ data: project });
-//   });
-// };

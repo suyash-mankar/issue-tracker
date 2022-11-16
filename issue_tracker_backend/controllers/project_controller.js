@@ -20,12 +20,19 @@ module.exports.create = function (req, res) {
   );
 };
 
-module.exports.details = function (req, res) {
-  Project.findOne({ _id: req.params.id }, function (err, project) {
+module.exports.details = async function (req, res) {
+
+  try {
+    let project = await Project.findOne({ _id: req.params.id });
+
+    if (project) {
+      project = await project.populate("issues");
+      return res.json({ data: project });
+    }
+  } catch (err) {
     if (err) {
-      console.log("error in finding project details in db");
+      console.log("error in finding project details in db", err);
       return;
     }
-    return res.json({ data: project });
-  });
+  }
 };

@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import styles from "../styles/projectDetails.module.css";
 import { useNavigate } from "react-router-dom";
 
+
 function ProjectDetails() {
   let { id } = useParams();
   const [project, setProject] = useState();
@@ -20,30 +21,58 @@ function ProjectDetails() {
     getProject();
   }, [id]);
 
+  console.log(project);
+
   const handleCreateIssueBtn = (e) => {
     return navigate(`/issue/create/${id}`);
   };
+
+
 
   return (
     <div className={styles.outerContainer}>
       {typeof project === "undefined" ? (
         <h1>loading...</h1>
       ) : (
-        <div className={styles.projectDetails} key={project._id}>
-          <p>Project Name : {project.data.name}</p>
-          <p>Project Description : {project.data.description}</p>
-          <p>Project author : {project.data.author}</p>
-          <Button
-            variant="success"
-            className={styles.issueBtn}
-            value={project._id}
-            onClick={(e) => {
-              handleCreateIssueBtn(e);
-            }}
-          >
-            Create Issue
-          </Button>
-        </div>
+        <>
+          <div className={styles.projectDetails} key={project._id}>
+            <p>Project Name : {project.data.name}</p>
+            <p>Project Description : {project.data.description}</p>
+            <p>Project author : {project.data.author}</p>
+            <Button
+              variant="success"
+              className={styles.issueBtn}
+              value={project._id}
+              onClick={(e) => {
+                handleCreateIssueBtn(e);
+              }}
+            >
+              Create New Issue
+            </Button>
+          </div>
+          <div className={styles.issueContainer}>
+            {project.data.issues.map((issue) => {
+              return (
+                <div className={styles.issueCard} key={issue._id}>
+                  <p>Issue Title : {issue.title}</p>
+                  <p>Issue Description : {issue.description}</p>
+                  <p>Issue Author : {issue.author}</p>
+                  <div className={styles.labelContainer}>
+                    {issue.labels.map((label, index) => {
+                      return (
+                        <p className={styles.label} key={index}>
+                          {label.value}
+                        </p>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          
+          
+        </>
       )}
     </div>
   );

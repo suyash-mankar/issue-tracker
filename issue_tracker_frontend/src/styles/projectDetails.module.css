@@ -1,13 +1,33 @@
 .projectDetails {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.projectDetails >p{
-    margin: 30px 40px;
+.projectDetails > p {
+  margin: 30px 40px;
 }
 
-.issueBtn{
-    height: 50px;
-   
+.issueBtn {
+  height: 50px;
+}
+
+.issueContainer {
+  border: 1px solid black;
+  height: auto;
+  padding: 20px 20%;
+}
+
+.issueCard {
+  border: 1px solid black;
+  height: 150px;
+  margin: 30px auto;
+}
+
+.labelContainer {
+  display: flex;
+}
+
+.label{
+    margin: 0 20px;
+    background-color: orange;
 }

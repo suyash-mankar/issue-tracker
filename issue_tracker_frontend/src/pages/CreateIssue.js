@@ -6,6 +6,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useFormInput } from "../hooks";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+import { components } from "react-select";
 
 function CreateIssue() {
   const navigate = useNavigate();
@@ -16,6 +18,14 @@ function CreateIssue() {
   const title = useFormInput("");
   const description = useFormInput("");
   const author = useFormInput("");
+
+  const options = [
+    { value: "bug", label: "bug" },
+    { value: "documentation", label: "documentation" },
+    { value: "duplicate", label: "duplicate" },
+    { value: "enhancement", label: "enhancement" },
+    { value: "invalid", label: "invalid" },
+  ];
 
   useEffect(() => {
     const getProject = async () => {
@@ -28,14 +38,8 @@ function CreateIssue() {
     getProject();
   }, [id]);
 
-  const handleChange = (e) => {
-    const { value, checked } = e.target;
-
-    if (checked) {
-      setLabels([...labels, value]);
-    } else {
-      setLabels(labels.filter((label) => label !== value));
-    }
+  const handleChange = (selectedOptions) => {
+    setLabels(selectedOptions);
   };
 
   const handleSubmit = async (e) => {
@@ -57,6 +61,23 @@ function CreateIssue() {
       return navigate(`/project/details/${id}`);
     }
   };
+
+  const Option = (props) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          <input
+            type="checkbox"
+            checked={props.isSelected}
+            onChange={() => null}
+          />{" "}
+          <label>{props.label}</label>
+        </components.Option>
+      </div>
+    );
+  };
+
+  console.log(labels);
 
   return (
     <div className={styles.outerContainer}>
@@ -94,42 +115,21 @@ function CreateIssue() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Group className="mb-3" controlId="formBasicDescription">
                 <Form.Label>Labels</Form.Label>
-                <Form.Check
-                  value="bug"
-                  type="checkbox"
-                  label="Bug"
-                  id="bug"
+
+                <Select
+                  options={options}
+                  isMulti
+                  closeMenuOnSelect={false}
+                  hideSelectedOptions={false}
+                  name="labels"
+                  className="basic-multi-select"
+                  classNamePrefix="select"
                   onChange={handleChange}
-                />
-                <Form.Check
-                  value="documentation"
-                  type="checkbox"
-                  label="Documentation"
-                  id="documentation"
-                  onChange={handleChange}
-                />
-                <Form.Check
-                  value="duplicate"
-                  type="checkbox"
-                  label="Duplicate"
-                  id="duplicate"
-                  onChange={handleChange}
-                />
-                <Form.Check
-                  value="enhancement"
-                  type="checkbox"
-                  label="Enhancement"
-                  id="enhancement"
-                  onChange={handleChange}
-                />
-                <Form.Check
-                  value="invalid"
-                  type="checkbox"
-                  label="Invalid"
-                  id="invalid"
-                  onChange={handleChange}
+                  components={{
+                    Option,
+                  }}
                 />
               </Form.Group>
 
