@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 function ProjectDetails() {
   let { id } = useParams();
   const [project, setProject] = useState();
-
   const navigate = useNavigate();
 
   useEffect(() => {

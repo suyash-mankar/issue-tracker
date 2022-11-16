@@ -5,8 +5,10 @@ import styles from "../styles/createIssue.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useFormInput } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 function CreateIssue() {
+  const navigate = useNavigate();
   let { id } = useParams();
   const [project, setProject] = useState();
   const [labels, setLabels] = useState([]);
@@ -24,12 +26,6 @@ function CreateIssue() {
       }
     };
     getProject();
-
-
-    
-
-
-
   }, [id]);
 
   const handleChange = (e) => {
@@ -39,6 +35,26 @@ function CreateIssue() {
       setLabels([...labels, value]);
     } else {
       setLabels(labels.filter((label) => label !== value));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/issue/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: title.value,
+        description: description.value,
+        labels: labels,
+        author: author.value,
+        project: id,
+      }),
+    });
+
+    if (res.status === 200) {
+      console.log("form data successfully send from frontend");
+      return navigate(`/project/details/${id}`);
     }
   };
 
@@ -55,7 +71,7 @@ function CreateIssue() {
           </div>
 
           <div className={styles.formContainer}>
-            <Form className={styles.formBorder}>
+            <Form className={styles.formBorder} onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicTitle">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
