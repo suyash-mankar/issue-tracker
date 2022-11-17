@@ -13,6 +13,7 @@ function ProjectDetails() {
 
   const [project, setProject] = useState();
   const [filteredIssues, setFilteredIssues] = useState([]);
+  const [labels, setLabels] = useState([]);
 
   useEffect(() => {
     const getProject = async () => {
@@ -24,6 +25,16 @@ function ProjectDetails() {
       }
     };
     getProject();
+
+    const getLabel = async () => {
+      const response = await fetch(`/labels/details/${id}`);
+      if (response.status === 200) {
+        const data = await response.json();
+        // console.log("data", data);
+        setLabels(data.data);
+      }
+    };
+    getLabel();
   }, [id]);
 
   const handleCreateIssueBtn = (e) => {
@@ -47,15 +58,29 @@ function ProjectDetails() {
   };
 
   const handleLabelsChange = (selectedOptions) => {
-    const newLabelFilter = filteredIssues.filter((issue) => {
-      return JSON.stringify(selectedOptions) === JSON.stringify(issue.labels);
-    });
-    setFilteredIssues(newLabelFilter);
+    for (let options of selectedOptions) {
+      for (let value of labels) {
+        for (let label of value.labels) {
+          if (options.label === label.label) {
+            console.log("match");
+            // console.log(value.issue);
+            setFilteredIssues([]);
+            console.log("filteredIssues", filteredIssues);
+            setFilteredIssues([...filteredIssues], value.issue);
+            break;
+          }
+        }
+      }
+    }
 
     if (selectedOptions.length === 0) {
       setFilteredIssues(project.data.issues);
     }
   };
+
+  // console.log("labels", labels);
+
+  console.log("filteredIssues", filteredIssues);
 
   return (
     <div className={styles.outerContainer}>

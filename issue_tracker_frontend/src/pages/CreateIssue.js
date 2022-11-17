@@ -7,8 +7,8 @@ import Form from "react-bootstrap/Form";
 import { useFormInput } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import {labelOptions} from '../utils/constants';
-import {Option} from '../utils/ReactSelectComponent';
+import { labelOptions } from "../utils/constants";
+import { Option } from "../utils/ReactSelectComponent";
 
 function CreateIssue() {
   const navigate = useNavigate();
@@ -49,6 +49,23 @@ function CreateIssue() {
       }),
     });
 
+    const resData = await res.json();
+    console.log("testData", resData);
+
+    const addLabelRes = await fetch("/labels/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        labels: labels,
+        issue: resData.issueId,
+        project: id,
+      }),
+    });
+
+    if (addLabelRes.status === 200) {
+      console.log("label data successfully send from frontend");
+    }
+
     if (res.status === 200) {
       console.log("form data successfully send from frontend");
       return navigate(`/project/details/${id}`);
@@ -66,7 +83,6 @@ function CreateIssue() {
             <p>Project Description : {project.data.description}</p>
             <p>Project author : {project.data.author}</p>
           </div>
-
 
           <div className={styles.formContainer}>
             <Form className={styles.formBorder} onSubmit={handleSubmit}>

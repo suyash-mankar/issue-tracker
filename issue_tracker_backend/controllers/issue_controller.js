@@ -19,6 +19,7 @@ module.exports.create = async function (req, res) {
     projectInDb.save();
 
     console.log("******", issue);
-    return res.sendStatus(200);
+
+    return res.status(200).json({ issueId: issue._id });
   }
 };
