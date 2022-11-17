@@ -7,7 +7,8 @@ import Form from "react-bootstrap/Form";
 import { useFormInput } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { components } from "react-select";
+import {labelOptions} from '../utils/constants';
+import {Option} from '../utils/ReactSelectComponent';
 
 function CreateIssue() {
   const navigate = useNavigate();
@@ -18,14 +19,6 @@ function CreateIssue() {
   const title = useFormInput("");
   const description = useFormInput("");
   const author = useFormInput("");
-
-  const options = [
-    { value: "bug", label: "bug" },
-    { value: "documentation", label: "documentation" },
-    { value: "duplicate", label: "duplicate" },
-    { value: "enhancement", label: "enhancement" },
-    { value: "invalid", label: "invalid" },
-  ];
 
   useEffect(() => {
     const getProject = async () => {
@@ -60,21 +53,6 @@ function CreateIssue() {
       console.log("form data successfully send from frontend");
       return navigate(`/project/details/${id}`);
     }
-  };
-
-  const Option = (props) => {
-    return (
-      <div>
-        <components.Option {...props}>
-          <input
-            type="checkbox"
-            checked={props.isSelected}
-            onChange={() => null}
-          />{" "}
-          <label>{props.label}</label>
-        </components.Option>
-      </div>
-    );
   };
 
   return (
@@ -118,7 +96,7 @@ function CreateIssue() {
                 <Form.Label>Labels</Form.Label>
 
                 <Select
-                  options={options}
+                  options={labelOptions}
                   isMulti
                   closeMenuOnSelect={false}
                   hideSelectedOptions={false}
