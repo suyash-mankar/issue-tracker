@@ -77,8 +77,6 @@ function CreateIssue() {
     );
   };
 
-  console.log(labels);
-
   return (
     <div className={styles.outerContainer}>
       {typeof project === "undefined" ? (
@@ -90,6 +88,7 @@ function CreateIssue() {
             <p>Project Description : {project.data.description}</p>
             <p>Project author : {project.data.author}</p>
           </div>
+
 
           <div className={styles.formContainer}>
             <Form className={styles.formBorder} onSubmit={handleSubmit}>

@@ -1,3 +1,5 @@
+/*----------- Project Details-------------------- */
+
 .projectDetails {
   display: flex;
   align-items: center;
@@ -11,23 +13,54 @@
   height: 50px;
 }
 
+/*------------- Project Issues---------------------- */
+
 .issueContainer {
-  border: 1px solid black;
   height: auto;
-  padding: 20px 20%;
+  padding: 0px 20%;
 }
 
 .issueCard {
   border: 1px solid black;
   height: 150px;
-  margin: 30px auto;
+  margin-bottom: 30px;
 }
 
 .labelContainer {
   display: flex;
 }
 
-.label{
-    margin: 0 20px;
-    background-color: orange;
+.label {
+  margin: 0 20px;
+  background-color: orange;
+}
+
+/*----------------- Filters----------------- */
+
+/* Search Filter */
+
+.filtersContainer{
+  display: flex;
+  justify-content: center;
+}
+
+
+.searchInputs {
+  margin: 20px auto;
+  display: flex;
+}
+
+.search input {
+  border: 1px solid black;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 18px;
+  padding: 15px;
+  height: 30px;
+  width: 300px;
+}
+
+input:focus {
+  outline: none;
 }
