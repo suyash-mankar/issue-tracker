@@ -56,7 +56,11 @@ function ProjectDetails() {
           </div>
 
           <div className={styles.filtersIssuesContainer}>
-            <Filter issues={issues} setFilteredIssues={setFilteredIssues} />
+            <Filter
+              issues={issues}
+              filteredIssues={filteredIssues}
+              setFilteredIssues={setFilteredIssues}
+            />
 
             {filteredIssues.length === 0 ? (
               <p>No results match your search </p>
