@@ -38,7 +38,6 @@ function CreateIssue() {
     setLabels(labelsArr);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch("/issue/create", {
@@ -52,7 +51,6 @@ function CreateIssue() {
         project: id,
       }),
     });
-    
 
     if (res.status === 200) {
       console.log("form data successfully send from frontend");

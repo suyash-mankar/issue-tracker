@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import styles from "../styles/projectDetails.module.css";
 import { useNavigate } from "react-router-dom";
-import { labelOptions } from "../utils/constants";
-import { Option } from "../utils/ReactSelectComponent";
-import Select from "react-select";
+import { IssueCard, Filter } from "../components";
 
 function ProjectDetails() {
   let { id } = useParams();
@@ -35,50 +33,6 @@ function ProjectDetails() {
     issues = project.data.issues;
   }
 
-  const handleSearchFilter = (e) => {
-    const searchWord = e.target.value;
-    const newSearchFilter = issues.filter((issue) => {
-      return (
-        issue.title.toLowerCase().includes(searchWord.toLowerCase()) ||
-        issue.description.toLowerCase().includes(searchWord.toLowerCase())
-      );
-    });
-    setFilteredIssues(newSearchFilter);
-  };
-
-  let labelFilteredIssues = [];
-
-  const handleLabelsChange = (selectedOptions) => {
-    setFilteredIssues([]);
-
-    let selectedOptionsArr = selectedOptions.map((option) => {
-      return option.value;
-    });
-
-    if (selectedOptionsArr.length === 0) {
-      labelFilteredIssues = [];
-      setFilteredIssues(issues);
-    }
-
-    for (let issue of issues) {
-      for (let option of selectedOptionsArr) {
-        if (issue.labels.includes(option)) {
-          if (!labelFilteredIssues.includes(issue)) {
-            labelFilteredIssues.push(issue);
-            setFilteredIssues(labelFilteredIssues);
-          }
-        } else {
-          let index = labelFilteredIssues.indexOf(issue);
-          if (index !== -1) {
-            labelFilteredIssues.splice(index, index + 1);
-            setFilteredIssues(labelFilteredIssues);
-          }
-          break;
-        }
-      }
-    }
-  };
-
   return (
     <div className={styles.outerContainer}>
       {typeof project === "undefined" ? (
@@ -102,56 +56,14 @@ function ProjectDetails() {
           </div>
 
           <div className={styles.filtersIssuesContainer}>
-            <div className={styles.filtersContainer}>
-              <h3>Filters</h3>
-
-              <div className={styles.searchFilterContainer}>
-                <div className={styles.searchInputs}>
-                  <p> Search by Titile/Description </p>
-                  <input
-                    type="text"
-                    onChange={handleSearchFilter}
-                    placeholder={"Titile/Description"}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.labelFilterContainer}>
-                <p> Labels </p>
-                <Select
-                  options={labelOptions}
-                  isMulti
-                  closeMenuOnSelect={true}
-                  hideSelectedOptions={true}
-                  name="labels"
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  onChange={handleLabelsChange}
-                />
-              </div>
-            </div>
+            <Filter issues={issues} setFilteredIssues={setFilteredIssues} />
 
             {filteredIssues.length === 0 ? (
               <p>No results match your search </p>
             ) : (
               <div className={styles.issueContainer}>
                 {filteredIssues.map((issue) => {
-                  return (
-                    <div className={styles.issueCard} key={issue._id}>
-                      <p>Issue Title : {issue.title}</p>
-                      <p>Issue Description : {issue.description}</p>
-                      <p>Issue Author : {issue.author}</p>
-                      <div className={styles.labelContainer}>
-                        {issue.labels.map((label, index) => {
-                          return (
-                            <p className={styles.label} key={index}>
-                              {label}
-                            </p>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
+                  return <IssueCard issue={issue} key={issue._id} />;
                 })}
               </div>
             )}

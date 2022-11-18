@@ -1,3 +1,5 @@
 import NavbarComp from "./Navbar";
+import IssueCard from "./IssueCard";
+import Filter from "./Filter";
 
-export { NavbarComp };
+export { NavbarComp, IssueCard, Filter };
