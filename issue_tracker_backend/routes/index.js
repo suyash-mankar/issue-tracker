@@ -6,7 +6,6 @@ router.get("/home", homeController.home);
 
 router.use('/project', require('./project'));
 router.use('/issue', require('./issue'));
-router.use('/labels', require('./label'));
 
 
 module.exports = router;

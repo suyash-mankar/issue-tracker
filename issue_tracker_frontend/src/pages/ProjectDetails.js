@@ -13,7 +13,6 @@ function ProjectDetails() {
 
   const [project, setProject] = useState();
   const [filteredIssues, setFilteredIssues] = useState([]);
-  const [labels, setLabels] = useState([]);
 
   useEffect(() => {
     const getProject = async () => {
@@ -25,16 +24,6 @@ function ProjectDetails() {
       }
     };
     getProject();
-
-    const getLabel = async () => {
-      const response = await fetch(`/labels/details/${id}`);
-      if (response.status === 200) {
-        const data = await response.json();
-        // console.log("data", data);
-        setLabels(data.data);
-      }
-    };
-    getLabel();
   }, [id]);
 
   const handleCreateIssueBtn = (e) => {
@@ -57,30 +46,38 @@ function ProjectDetails() {
     setFilteredIssues(newSearchFilter);
   };
 
+  let labelFilteredIssues = [];
+
   const handleLabelsChange = (selectedOptions) => {
-    for (let options of selectedOptions) {
-      for (let value of labels) {
-        for (let label of value.labels) {
-          if (options.label === label.label) {
-            console.log("match");
-            // console.log(value.issue);
-            setFilteredIssues([]);
-            console.log("filteredIssues", filteredIssues);
-            setFilteredIssues([...filteredIssues], value.issue);
-            break;
+    setFilteredIssues([]);
+
+    let selectedOptionsArr = selectedOptions.map((option) => {
+      return option.value;
+    });
+
+    if (selectedOptionsArr.length === 0) {
+      labelFilteredIssues = [];
+      setFilteredIssues(issues);
+    }
+
+    for (let issue of issues) {
+      for (let option of selectedOptionsArr) {
+        if (issue.labels.includes(option)) {
+          if (!labelFilteredIssues.includes(issue)) {
+            labelFilteredIssues.push(issue);
+            setFilteredIssues(labelFilteredIssues);
           }
+        } else {
+          let index = labelFilteredIssues.indexOf(issue);
+          if (index !== -1) {
+            labelFilteredIssues.splice(index, index + 1);
+            setFilteredIssues(labelFilteredIssues);
+          }
+          break;
         }
       }
     }
-
-    if (selectedOptions.length === 0) {
-      setFilteredIssues(project.data.issues);
-    }
   };
-
-  // console.log("labels", labels);
-
-  console.log("filteredIssues", filteredIssues);
 
   return (
     <div className={styles.outerContainer}>
@@ -148,7 +145,7 @@ function ProjectDetails() {
                         {issue.labels.map((label, index) => {
                           return (
                             <p className={styles.label} key={index}>
-                              {label.value}
+                              {label}
                             </p>
                           );
                         })}

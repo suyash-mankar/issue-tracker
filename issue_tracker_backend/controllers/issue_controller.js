@@ -20,6 +20,6 @@ module.exports.create = async function (req, res) {
 
     console.log("******", issue);
 
-    return res.status(200).json({ issueId: issue._id });
+    return res.sendStatus(200);
   }
 };

@@ -32,8 +32,12 @@ function CreateIssue() {
   }, [id]);
 
   const handleChange = (selectedOptions) => {
-    setLabels(selectedOptions);
+    let labelsArr = selectedOptions.map((option) => {
+      return option.value;
+    });
+    setLabels(labelsArr);
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,23 +52,7 @@ function CreateIssue() {
         project: id,
       }),
     });
-
-    const resData = await res.json();
-    console.log("testData", resData);
-
-    const addLabelRes = await fetch("/labels/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        labels: labels,
-        issue: resData.issueId,
-        project: id,
-      }),
-    });
-
-    if (addLabelRes.status === 200) {
-      console.log("label data successfully send from frontend");
-    }
+    
 
     if (res.status === 200) {
       console.log("form data successfully send from frontend");
