@@ -32,7 +32,9 @@ function CreateProject() {
 
   return (
     <div className={styles.outerContainer}>
-      <h1 style={{ color: "#2CBF2E", marginBottom: '30px' }}>Enter Project Details</h1>
+      <h1 style={{ color: "#2CBF2E", marginBottom: "30px" }}>
+        Enter Project Details
+      </h1>
 
       <Form className={styles.form} onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

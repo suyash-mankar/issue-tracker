@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/projectDetails.module.css";
-import { labelOptions } from "../utils/constants";
+import {
+  labelOptions,
+  multiInputStyles,
+  singleInputStyle,
+} from "../utils/constants";
 import Select from "react-select";
 
 function Filter({ issues, filteredIssues, setFilteredIssues }) {
@@ -124,7 +128,7 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
       }
 
       for (let issue of searchIssues) {
-        if (issue.author.includes(selectedOption.value)) {
+        if (issue.author === selectedOption.value) {
           if (!labelFilteredIssues.includes(issue)) {
             labelFilteredIssues.push(issue);
             setFilteredIssues(labelFilteredIssues);
@@ -136,7 +140,6 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
 
   return (
     <div className={styles.filtersContainer}>
-      <h3>Filters</h3>
       <div className={styles.searchFilterContainer}>
         <div className={styles.searchInputs}>
           <p> Search by Titile/Description </p>
@@ -159,6 +162,7 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
           className="basic-multi-select"
           classNamePrefix="select"
           onChange={handleLabelsChange}
+          styles={multiInputStyles}
         />
       </div>
       <div className={styles.authorFilterContainer}>
@@ -174,6 +178,7 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
           onChange={handleAuthorChange}
           isRtl={false}
           isSearchable={true}
+          styles={singleInputStyle}
         />
       </div>
     </div>

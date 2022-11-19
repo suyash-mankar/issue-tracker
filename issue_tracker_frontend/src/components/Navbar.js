@@ -29,10 +29,12 @@ const styles = {
   },
   link: {
     textDecoration: "none",
+    color: "#2CBF2E"
   },
   text: {
     fontSize: "1.5rem",
     fontFamily: "monospace",
+    
   },
 };
 

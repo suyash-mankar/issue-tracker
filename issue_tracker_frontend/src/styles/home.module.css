@@ -26,6 +26,8 @@
   margin: 20px;
   position: relative;
   background-color: #151414;
+  box-shadow: -5px 5px 10px 2px black;
+
 }
 
 .card:hover {
