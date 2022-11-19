@@ -6,14 +6,18 @@ import { useFormInput } from "../hooks";
 import { useNavigate } from "react-router-dom";
 
 function CreateProject() {
+  // To navigate/redirect
   const navigate = useNavigate();
 
+  // Define states using custom hook - useFormInput
   const name = useFormInput("");
   const description = useFormInput("");
   const author = useFormInput("");
 
+  // On form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Make an API call to create project in database
     const res = await fetch("/project/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,8 +39,9 @@ function CreateProject() {
       <h1 style={{ color: "#2CBF2E", marginBottom: "30px" }}>
         Enter Project Details
       </h1>
-
+      {/* Form to create new project */}
       <Form className={styles.form} onSubmit={handleSubmit}>
+        {/* Project name */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Project Name</Form.Label>
           <Form.Control
@@ -47,7 +52,7 @@ function CreateProject() {
             required
           />
         </Form.Group>
-
+        {/* Project description */}
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
           <Form.Control
@@ -59,7 +64,7 @@ function CreateProject() {
             required
           />
         </Form.Group>
-
+        {/* Project author */}
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Author</Form.Label>
           <Form.Control

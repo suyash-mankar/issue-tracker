@@ -1,8 +1,8 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 function NavbarComp() {
   return (
@@ -41,7 +41,7 @@ const styles = {
   homeLink: {
     textDecoration: "none",
     color: "white",
-    fontSize: "1.2rem",  
+    fontSize: "1.2rem",
   },
 };
 
