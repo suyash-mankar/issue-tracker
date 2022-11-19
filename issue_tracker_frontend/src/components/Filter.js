@@ -8,6 +8,7 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
   const [labelOptionsState, setLabelOptionsState] = useState([]);
   const [isLabelFilter, setIsLabelFilter] = useState(false);
   const [isAuthorFilter, setIsAuthorFilter] = useState(false);
+
   //  <----------- Search Filter ----------------->
 
   useEffect(() => {

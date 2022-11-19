@@ -25,9 +25,12 @@ const Home = () => {
 
   return (
     <div>
-      <Link to="/project/create">
-        <Button className={styles.btn}> Create Project</Button>
-      </Link>
+      <div className={styles.heading}>
+        <h2>ALL PROJECTS</h2>
+        <Link to="/project/create">
+          <Button className={styles.btn}> Create New Project</Button>
+        </Link>
+      </div>
 
       <div className={styles.projectsContainer}>
         {typeof projects === "undefined" ? (

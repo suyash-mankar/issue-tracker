@@ -15,3 +15,15 @@
 .btn {
   margin: 20px 100px;
 }
+
+
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 40px;
+  margin-left: 100px;
+}
+.heading h2{
+  font-family: 'Segoe UI';
+}
