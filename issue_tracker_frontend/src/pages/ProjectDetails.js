@@ -36,7 +36,7 @@ function ProjectDetails() {
   return (
     <div className={styles.outerContainer}>
       {typeof project === "undefined" ? (
-        <h1>loading...</h1>
+        <h1 style={{ margin: "50px 17px" }}>Loading...</h1>
       ) : (
         <>
           <div className={styles.projectDetailsContainer} key={project._id}>
@@ -66,7 +66,7 @@ function ProjectDetails() {
                   navigate("/");
                 }}
               >
-                Back
+                Go Back
               </Button>
             </div>
           </div>
@@ -82,7 +82,7 @@ function ProjectDetails() {
             </div>
 
             {filteredIssues.length === 0 ? (
-              <h1 style={{margin: '50px 100px'}}> No Issues Found </h1>
+              <h1 style={{ margin: "50px 100px" }}> No Issues Found </h1>
             ) : (
               <div className={styles.issueContainer}>
                 <h3 style={{ marginBottom: 30 }}>

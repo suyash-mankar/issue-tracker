@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function NavbarComp() {
   return (
@@ -17,6 +18,9 @@ function NavbarComp() {
             Issue Tracker
           </Navbar.Brand>
         </Link>
+        <Link to="/" style={styles.homeLink}>
+          <Button variant="outline-primary"> Home </Button>
+        </Link>
       </Container>
     </Navbar>
   );
@@ -29,12 +33,15 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-    color: "#2CBF2E"
   },
   text: {
     fontSize: "1.5rem",
     fontFamily: "monospace",
-    
+  },
+  homeLink: {
+    textDecoration: "none",
+    color: "white",
+    fontSize: "1.2rem",  
   },
 };
 

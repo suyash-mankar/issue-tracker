@@ -25,40 +25,45 @@ const Home = () => {
 
   return (
     <div>
-      <div className={styles.heading}>
-        <h2>ALL PROJECTS</h2>
-        <Link to="/project/create">
-          <Button className={styles.btn} variant="success">
-            Create New Project
-          </Button>
-        </Link>
-      </div>
-
-      <div className={styles.projectsContainer}>
+      <div className={styles.outerContainer}>
         {typeof projects === "undefined" ? (
-          <h1>loading...</h1>
+          <h1 style={{ margin: "50px 17px" }}>Loading...</h1>
         ) : (
-          projects.data.map((project) => {
-            return (
-              <div className={styles.card} key={project._id}>
-                <h2>{project.name}</h2>
-                <p style={{ color: "#2CBF2E", fontSize: "1.2rem" }}>
-                  {project.description}
-                </p>
-                <p className={styles.author}>Author : {project.author}</p>
-                <Button
-                  variant="outline-light"
-                  onClick={(e) => handleOpenProject(e)}
-                  value={project._id}
-                  className={styles.openProjectBtn}
-                >
-                  Open Project
+          <>
+            <div className={styles.heading}>
+              <h2>ALL PROJECTS ({projects.data.length}) </h2>
+              <Link to="/project/create">
+                <Button className={styles.btn} variant="success">
+                  Create New Project
                 </Button>
+              </Link>
+            </div>
+            <div className={styles.projectsContainer}>
+              {projects.data.map((project) => {
+                return (
+                  <div className={styles.card} key={project._id}>
+                    <h2>{project.name}</h2>
+                    <p style={{ color: "#2CBF2E", fontSize: "1.2rem" }}>
+                      {project.description}
+                    </p>
+                    <p className={styles.author}>Author : {project.author}</p>
+                    <Button
+                      variant="outline-light"
+                      onClick={(e) => handleOpenProject(e)}
+                      value={project._id}
+                      className={styles.openProjectBtn}
+                    >
+                      Open Project
+                    </Button>
 
-                <p className={styles.issues}>Issues: {project.issues.length}</p>
-              </div>
-            );
-          })
+                    <p className={styles.issues}>
+                      Issues: {project.issues.length}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
     </div>

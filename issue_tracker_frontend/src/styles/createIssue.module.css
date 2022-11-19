@@ -1,17 +1,56 @@
-.projectDetails {
+.outerContainer {
   display: flex;
-  align-items: center;
+  flex-grow: 1;
+  /* justify-content: space-between; */
 }
 
+.projectDetails{
+  width: 25%;
+}
 .projectDetails > p {
   margin: 30px 40px;
 }
 
-.formContainer{
-  padding: 0px 20%;
+.formContainer {
+  margin-top: 20px;
+ width: 55%;
 }
 
-.formBorder{
-  border: 1px solid black;
-  padding: 50px;
+
+.backBtn {
+  margin-left: 50px;
 }
+
+.form {
+  border: 1px solid grey;
+  padding: 30px 80px;
+  background-color: #151414;
+}
+
+
+
+.form input {
+  background: black;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.form input:focus {
+  background: black;
+  border: 1px solid grey;
+  color: white;
+}
+
+.form textarea {
+  background: black;
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  color: white;
+}
+
+.form textarea:focus {
+  background: black;
+  border: 1px solid grey;
+  color: white;
+}
+

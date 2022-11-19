@@ -7,8 +7,7 @@ import Form from "react-bootstrap/Form";
 import { useFormInput } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { labelOptions } from "../utils/constants";
-import { Option } from "../utils/ReactSelectComponent";
+import { labelOptions, multiInputStyles } from "../utils/constants";
 
 function CreateIssue() {
   const navigate = useNavigate();
@@ -63,15 +62,21 @@ function CreateIssue() {
       {typeof project === "undefined" ? (
         <h1>loading...</h1>
       ) : (
-        <>
+        <div className={styles.outerContainer}>
           <div className={styles.projectDetails} key={project._id}>
-            <p>Project Name : {project.data.name}</p>
-            <p>Project Description : {project.data.description}</p>
-            <p>Project author : {project.data.author}</p>
+            <h3 style={{ margin: 20 }}>
+              {project.data.name}
+              <p style={{ color: "#2CBF2E", fontSize: "1.2rem" }}>
+                {project.data.description}
+              </p>
+            </h3>
           </div>
 
           <div className={styles.formContainer}>
-            <Form className={styles.formBorder} onSubmit={handleSubmit}>
+            <h1 style={{marginBottom: "30px" }}>
+              Enter Issue Details
+            </h1>
+            <Form className={styles.form} onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicTitle">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
@@ -106,9 +111,7 @@ function CreateIssue() {
                   className="basic-multi-select"
                   classNamePrefix="select"
                   onChange={handleChange}
-                  components={{
-                    Option,
-                  }}
+                  styles={multiInputStyles}
                 />
               </Form.Group>
 
@@ -123,12 +126,19 @@ function CreateIssue() {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="success" type="submit">
                 Create Issue
+              </Button>
+              <Button
+                variant="danger"
+                className={styles.backBtn}
+                onClick={() => navigate(`/project/details/${id}`)}
+              >
+                Go Back
               </Button>
             </Form>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

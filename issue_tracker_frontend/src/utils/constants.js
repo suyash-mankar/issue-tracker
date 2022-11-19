@@ -12,9 +12,10 @@ export const multiInputStyles = {
     color: "white",
     background: "black",
   }),
-  option: (provided) => ({
+  option: (provided, { data, isDisabled, isFocused, isSelected }) => ({
     ...provided,
     color: "black",
+    border: "1px solid #dadada",
   }),
   multiValue: (provided) => ({
     ...provided,
