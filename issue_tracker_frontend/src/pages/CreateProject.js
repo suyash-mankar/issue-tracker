@@ -32,6 +32,8 @@ function CreateProject() {
 
   return (
     <div className={styles.outerContainer}>
+      <h1 style={{ color: "#2CBF2E", marginBottom: '30px' }}>Enter Project Details</h1>
+
       <Form className={styles.form} onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Project Name</Form.Label>
@@ -67,8 +69,15 @@ function CreateProject() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="success" type="submit">
           Submit
+        </Button>
+        <Button
+          variant="danger"
+          className={styles.backBtn}
+          onClick={() => navigate("/")}
+        >
+          Go Back
         </Button>
       </Form>
     </div>

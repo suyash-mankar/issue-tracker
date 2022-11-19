@@ -28,7 +28,9 @@ const Home = () => {
       <div className={styles.heading}>
         <h2>ALL PROJECTS</h2>
         <Link to="/project/create">
-          <Button className={styles.btn}> Create New Project</Button>
+          <Button className={styles.btn} variant="success">
+            Create New Project
+          </Button>
         </Link>
       </div>
 
@@ -39,16 +41,21 @@ const Home = () => {
           projects.data.map((project) => {
             return (
               <div className={styles.card} key={project._id}>
-                <p>Project Name : {project.name}</p>
-                <p>Project Description : {project.description}</p>
-                <p>Project author : {project.author}</p>
+                <h2>{project.name}</h2>
+                <p style={{ color: "#2CBF2E", fontSize: "1.2rem" }}>
+                  {project.description}
+                </p>
+                <p className={styles.author}>Author : {project.author}</p>
                 <Button
-                  variant="outline-dark"
+                  variant="outline-light"
                   onClick={(e) => handleOpenProject(e)}
                   value={project._id}
+                  className={styles.openProjectBtn}
                 >
                   Open Project
                 </Button>
+
+                <p className={styles.issues}>Issues: {project.issues.length}</p>
               </div>
             );
           })

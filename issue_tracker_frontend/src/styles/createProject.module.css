@@ -1,8 +1,38 @@
 .outerContainer {
-  padding: 80px 20%;
+  padding: 50px 20%;
 }
 
 .form {
   border: 1px solid grey;
-  padding: 50px;
+  padding: 30px 50px;
+  background-color: #151414;
+}
+
+.backBtn {
+  margin-left: 50px;
+}
+
+.form input {
+  background: black;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.form input:focus {
+  background: black;
+  border: 1px solid grey;
+  color: white;
+}
+
+.form textarea {
+  background: black;
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  color: white;
+}
+
+.form textarea:focus {
+  background: black;
+  border: 1px solid grey;
+  color: white;
 }

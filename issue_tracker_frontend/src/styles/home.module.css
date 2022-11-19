@@ -1,3 +1,16 @@
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 40px 0px 100px;
+}
+.heading h2{
+  font-family: 'Segoe UI';
+  color: white;
+}
+
+
+
 .projectsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -5,25 +18,42 @@
 }
 
 .card {
-  width: 400px;
+  width: 300px;
   height: 300px;
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 30px;
+  padding: 30px;
   margin: 20px;
+  position: relative;
+  background-color: #151414;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 2px 2px whitesmoke;
 }
 
 .btn {
   margin: 20px 100px;
 }
 
+.issues{
+  position: absolute;
+  bottom: 10px;
+  color: red;
+}
 
-.heading{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 40px;
-  margin-left: 100px;
+
+.author{
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  color: lightgrey;
 }
-.heading h2{
-  font-family: 'Segoe UI';
+
+.openProjectBtn{
+  position: absolute;
+  bottom: 100px;
+
 }
+
+
