@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Create a project schema
 const projectSchema = new mongoose.Schema(
   {
     name: {

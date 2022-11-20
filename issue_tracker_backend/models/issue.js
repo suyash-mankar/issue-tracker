@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Create an issueSchema
 const issueSchema = new mongoose.Schema(
   {
     title: {

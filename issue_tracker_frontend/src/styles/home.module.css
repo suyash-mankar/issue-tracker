@@ -10,13 +10,14 @@
 }
 
 
-
+/* projects container */
 .projectsContainer {
   display: flex;
   flex-wrap: wrap;
   padding: 5px 5%;
 }
 
+/* project card */
 .card {
   width: 300px;
   height: 300px;
@@ -38,6 +39,7 @@
   margin: 20px 100px;
 }
 
+/* project details */
 .issues{
   position: absolute;
   bottom: 10px;

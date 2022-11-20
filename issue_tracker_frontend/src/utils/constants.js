@@ -1,3 +1,4 @@
+// Label Options for Input of react-select
 export const labelOptions = [
   { value: "bug", label: "bug" },
   { value: "documentation", label: "documentation" },
@@ -6,6 +7,7 @@ export const labelOptions = [
   { value: "invalid", label: "invalid" },
 ];
 
+// styles for multiInput from react-select
 export const multiInputStyles = {
   control: (baseStyles, state) => ({
     ...baseStyles,
@@ -34,6 +36,7 @@ export const multiInputStyles = {
   }),
 };
 
+// styles for singleInput from react-select
 export const singleInputStyle = {
   control: (baseStyles, state) => ({
     ...baseStyles,

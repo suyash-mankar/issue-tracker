@@ -2,6 +2,8 @@
   padding: 50px 20%;
 }
 
+
+/* form */
 .form {
   border: 1px solid grey;
   padding: 30px 50px;
@@ -11,6 +13,8 @@
 .backBtn {
   margin-left: 50px;
 }
+
+/* form inputs */
 
 .form input {
   background: black;

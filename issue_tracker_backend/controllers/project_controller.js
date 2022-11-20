@@ -2,7 +2,7 @@ const Project = require("../models/Project");
 
 module.exports.create = function (req, res) {
   const { name, description, author } = req.body;
-
+  // Create a document in project collection in database
   Project.create(
     {
       name,
@@ -21,12 +21,14 @@ module.exports.create = function (req, res) {
 };
 
 module.exports.details = async function (req, res) {
-
   try {
+    // find the project in database from the id in url
     let project = await Project.findOne({ _id: req.params.id });
 
     if (project) {
+      // populate issue in project
       project = await project.populate("issues");
+      // send the project data in response
       return res.json({ data: project });
     }
   } catch (err) {

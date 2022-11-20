@@ -16,6 +16,9 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
   const [isLabelFilter, setIsLabelFilter] = useState(false);
   const [isAuthorFilter, setIsAuthorFilter] = useState(false);
 
+  let handleLabelsChange;
+  let handleAuthorChange;
+
   useEffect(() => {
     if (!isLabelFilter) {
       if (!isAuthorFilter) {
@@ -40,7 +43,16 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
         handleLabelsChange(labelOptionsState);
       }
     }
-  }, [isLabelFilter, isAuthorFilter]);
+  }, [
+    isLabelFilter,
+    isAuthorFilter,
+    setFilteredIssues,
+    issues,
+    handleAuthorChange,
+    authorOptionState,
+    handleLabelsChange,
+    labelOptionsState,
+  ]);
 
   //  <----------- Search Filter ----------------->
 
@@ -87,7 +99,7 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
   //  <----------- Labels Filter ----------------->
   let labelFilteredIssues = [];
   // Function called when any label is selected in the label filter
-  const handleLabelsChange = (selectedOptions) => {
+  handleLabelsChange = (selectedOptions) => {
     // set isLabelFilter selected as true
     setIsLabelFilter(true);
     // set filtered arary state as empty
@@ -134,7 +146,7 @@ function Filter({ issues, filteredIssues, setFilteredIssues }) {
   });
 
   // Function called when any author is selected in the author filter
-  const handleAuthorChange = (selectedOption) => {
+  handleAuthorChange = (selectedOption) => {
     // set isLabelFilter selected as true
     setIsAuthorFilter(true);
     // set filtered arary state as empty
